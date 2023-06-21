@@ -1,25 +1,42 @@
+import {CoinflowEnvs, CoinflowWithdraw} from '@coinflowlabs/react';
+import {useConnection, useWallet} from '@solana/wallet-adapter-react';
+import {WalletMultiButton} from '@solana/wallet-adapter-react-ui';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Wallet} from './Wallet';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Wallet>
+        <Wallet>
+          <div className="App">
+            <WalletMultiButton />
+            <div
+                style={{
+                  height: '100vh',
+                }}
+            >
+              <CoinflowContent />
+            </div>
+          </div>
+        </Wallet>
+      </Wallet>
+  );
+}
+
+function CoinflowContent() {
+  const {connection} = useConnection();
+  const wallet = useWallet();
+
+  return (
+      <CoinflowWithdraw
+          wallet={wallet}
+          merchantId={process.env.REACT_APP_MERCHANT_ID as string}
+          env={process.env.REACT_APP_ENV as CoinflowEnvs}
+          connection={connection}
+          onSuccess={() => console.log('Withdraw Success')}
+          blockchain={'solana'}
+          email={'user-email@email.com'}
+      />
   );
 }
 

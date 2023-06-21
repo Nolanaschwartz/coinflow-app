@@ -1,3 +1,10 @@
+# Coinflow doc improvements
+1. Include a "Copy" button to install dev dependencies under "Fixing WebPack 5 Issues"
+   1. While being able to successfully test and confirm on dashboard TX went through, I found that I was still running into compilation errors.
+2. Mention the necessary environment variables and where to find them
+3. Testnet vs Devnet, specify that the Devnet is the one that is currently being used in the faucet/sandbox for the Solana example.
+   1. This could be applied to the other chain, for example ETH: Goerli vs Sepolia etc
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
